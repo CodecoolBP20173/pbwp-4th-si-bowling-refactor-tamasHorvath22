@@ -31,9 +31,7 @@ def score(game):
     return result
 
 def get_value(char):
-    if char == '1' or char == '2' or char == '3' or \
-       char == '4' or char == '5' or char == '6' or \
-       char == '7' or char == '8' or char == '9':
+    if char in [str(num) for num in range(1, 10)]:
         return int(char)
     elif char == 'X' or char == 'x':
         return 10
@@ -42,4 +40,4 @@ def get_value(char):
     elif char == '-':
         return 0
     else:
-        raise ValueError()
+        raise ValueError
