@@ -33,11 +33,8 @@ def score(game):
 def get_value(char):
     if char in [str(num) for num in range(1, 10)]:
         return int(char)
-    elif char == 'X' or char == 'x':
-        return 10
-    elif char == '/':
+    elif char == 'X' or char == 'x' or char == '/':
         return 10
     elif char == '-':
         return 0
-    else:
-        raise ValueError
+    
