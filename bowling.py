@@ -1,15 +1,18 @@
 def score(game):
+    """ Gets a parameter 'game', which is a string.
+    This contains the scores of a player. This function
+    turns the string into score. Returns an integer"""
     result = 0
     frame = 1
     is_first_try = True
     last_score = 0
     for i in range(len(game)):
-        result += strike_second(game[i], last_score)
+        result += if_spare(game[i], last_score)
         
         if frame < 10  and (game[i].lower() == 'x' or game[i] == '/'):
             result += get_value(game[i+1])
             if game[i].lower() == 'x':
-                result += strike_second(game[i+2], get_value(game[i+1]))
+                result += if_spare(game[i+2], get_value(game[i+1]))
                     
         last_score = get_value(game[i])
 
@@ -20,7 +23,9 @@ def score(game):
             is_first_try = False
     return result
 
-def strike_second(char, last_score):
+def if_spare(char, last_score):
+    """This function decides if a try was a spare or not.
+    Returns the points of the try as an integer."""
     if char == '/':
         points = 10 - last_score
     else:
@@ -28,6 +33,8 @@ def strike_second(char, last_score):
     return points
 
 def get_value(char):
+    """This function returns the points
+    of a try as an integer."""
     if char in [str(num) for num in range(1, 10)]:
         return int(char)
     elif char.lower() == 'x' or char == '/':
